@@ -1,6 +1,6 @@
 # Data Science and Engineering Coursework
 
-In 2023 I graduated from The City College of New York with [MS in Data Science and Engineering](https://www.ccny.cuny.edu/dse) and earned 3.81 GPA. Below you could find a information about the classes I took as well as the most notable/interesting homework challenges, labs, group and individual projects.
+In 2023 I earned a [**Master's degree in Data Science and Engineering**](https://www.ccny.cuny.edu/dse) from The City College of New York with a 3.81 GPA. Below you could find a information about the classes I took, as well as the most interesting homework challenges, labs, group and individual projects:
 
 
 | Catalog #	| Course  							                | 	Instructor       | Semester  |
