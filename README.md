@@ -1,6 +1,12 @@
-# Data Science and Engineering Coursework
+## Ivan Miller, [LinkedIn Profile](https://www.linkedin.com/in/ivan-miller/)
 
-In 2023 I earned a [**Master's degree in Data Science and Engineering**](https://www.ccny.cuny.edu/dse) from The City College of New York with a 3.81 GPA. Below you could find a list of courses I took, as well as the information about the most interesting homework challenges, labs, group and individual projects:
+I hold a [**Master's degree in Data Science and Engineering**](https://www.ccny.cuny.edu/dse) from The City College of New York (3.81 GPA) and I have over 7 years of experience in utilizing SQL and Python to extract insights from complex data.
+
+I currently work as  a Data Science and Analytics Lead at Vox Media where I collaborate with diverse teams automating processes, optimizing internal tools, and delivering data-driven solutions and impactful analyses to inform strategic decision-making, optimize product performance, and grow revenue from audio, video, and social media advertising.
+
+
+**Data Science and Engineering Coursework**
+Below you could find a list of courses I took while working on my Master's degree, as well as the information about the most interesting challenges, labs, group and individual projects:
 
 
 | Catalog #	| Course  							                | 	Instructor       | Semester  |
