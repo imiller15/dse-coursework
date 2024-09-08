@@ -32,7 +32,7 @@ We selected Facial Expression Recognition 2013 (FER-2013) dataset [8] for the pr
 The original dataset contained 35,887 images, out of which 28,709 images belonged to the train set and the remaining 7,178 images were assigned to the test set. All images were then grouped into seven categories of emotions with 4,953 images labeled as “angry”, 547 “disgust” images, 5,127 “fear”, 8,989 “happy”, 6,077 “sad”, 4,002 “surprise”, and 6,198 “neutral”. During the EDA stage the dataset was inspected and images that contained black or white pixels only were removed. In addition, in order to address the issue with a severe imbalance between the classes, when images in the minority “disgust” class were only about 6% compared to the majority “happy” class, the “disgust” class was upsampled to 4,000 images (see Fig.1 for details about the data distribution between the classes before and after). The resampled dataset consists of 31,432 training images and 7,896 test images.
 
 
-![Figure 1 A](reports/figures/figure1_a.png) ![Figure 1 B](reports/igures/figure1_b.png)
+![Figure 1 A](reports/figures/figure1_a.png) ![Figure 1 B](reports/figures/figure1_b.png)
 
 **Figure 1**: Distribution of images between the classes in the original dataset (left), compared to the distribution after upsampling of the minority “disgust class (right)
 
@@ -148,6 +148,8 @@ To look at what happens under the hood of the neural network we looked at activa
 ![Figure 11](reports/figures/figure11.png)
 
 **Figure 11**: 6 out of 64 images (11 x 11 each) from the first Second Pooling Layer
+
+
 
 
 As the image goes deeper into the layers of the model, the activations start looking more sparse and localized. Figure xx shows activations of the same image by layers
@@ -291,7 +293,13 @@ Project repository
 
 Insert Github bar graph &amp; visualization of when commit occured
 
-Chikako contributed writing codes for data preparation, dimension reduction, feature transformation, SVM, KNN and webcam live demonstration. Total hours of coding work is X hours and total meeting hours is X hours.
+**Chikako Olsen**
+Contributed writing code for data preparation, dimension reduction, feature transformation, SVM, KNN and webcam live demonstration. 
+
+**Ivan Miller**
+EDA, KNN and cross-validation, CNN - model design and tuning, activation maps
+
+**Rabiul Hossain**
 
 ## 9. Bibliography:
 
