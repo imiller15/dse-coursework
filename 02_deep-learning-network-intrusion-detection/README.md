@@ -41,8 +41,8 @@ To relieve the strain on the hardware and ensure that we were using the most mea
 1. First, we computed a pairwise correlation of features (Pearson) and identified those with the correlation of 85% or higher.
 2. We then calculated variance inflation factor (VIF) for each feature and marked the features that had VIF values higher than 10.
 3. As the third method we fit a random forest classifier with standard parameters to the training set and identified the features that were responsible for the top 95% of importance (see Fig.1 and appendix 1 for reference).
-<img src="figures/1.png" height="500">
-<!-- ![Figure 1](figures/1.png) -->
+<img src="reports/figures/1.png" height="500">
+<!-- ![Figure 1](reports/figures/1.png) -->
 
 We then cross-referenced the results and identified the features that carried the highest importance and weren’t correlated between each other, selecting 22 of them for future modeling.
 
@@ -54,8 +54,8 @@ The distribution of data between attack classes in the original training set sho
 
 To even out the balance between the attack classes and prepare the data for the multi-class classification we decided to use the Synthetic Minority Oversampling Technique (SMOTE) [8] to bring the number of data points in each of the attack classes to the same level as the highest number of the organic data points available among all attack classes in the original training set (“Generic” attack class containing 183,159 of the original data points, see Fig.2). 
 
-<img src="figures/2.png" height="500">
-<!-- ![Figure 2](figures/2.png) -->
+<img src="reports/figures/2.png" height="500">
+<!-- ![Figure 2](reports/figures/2.png) -->
 
 SMOTE works by selecting a pair of examples from the minority class that are close to each other in the feature space and creating a synthetic example at a random point along the line drawn between those examples. This approach combined with the subsequent downsampling of the majority class (“Normal”) to the same level allowed us to create a perfect balance between all 10 attack classes (see Appendix 2).
 
@@ -79,8 +79,8 @@ Employing the above mentioned technique we performed the hyperparameter tuning w
 * max_depth (maximum number of nodes): 10; 
 * min_samples_leaf (minimum number of samples on each side after splitting a node): 2.
 
-<img src="figures/3.png" width="450">
-<!-- ![Figure 3](figures/3.png) -->
+<img src="reports/figures/3.png" width="450">
+<!-- ![Figure 3](reports/figures/3.png) -->
 
 We then used the best parameters to train a new random forest classifier on a full imbalanced dataset and achieved balanced accuracy (average recall across all classes) of 72.68% and an F1-score of 97% (See Fig.3). Despite showing the absolute best performance we managed to achieve with any of the baseline classifiers, random forest still struggled to correctly identify some of the classes: “Analysis” attack class was classified correctly only 25% of the time while having the highest misclassification rates with 42% of the times being recognized by the model as “DoS” and 32% as backdoor. Exploits and Backdoor are two other classes that had less than a 50% recall (44% and 48% respectively). 
 
@@ -88,8 +88,8 @@ We then used the best parameters to train a new random forest classifier on a fu
 
 Another of our baseline methods is logistic regression which we used for multiclass classification of our network traffic data. We trained the logistic regression model on the training set and evaluated the model’s performance on the test set. To gain insights about the performance, we constructed a confusion matrix (shown in Fig. 4) and provided a classification report to show metrics such as accuracy, precision, recall and F1-score for each attack class. 
 
-<img src="figures/4.png" height="450">
-<!-- ![Figure 4](figures/4.png) -->
+<img src="reports/figures/4.png" height="450">
+<!-- ![Figure 4](reports/figures/4.png) -->
 
 Our results show a balanced accuracy of 68% and recall of 97%. However, considering individual attack class/type, the model gave low performance scores for attack classes like Exploits, Analysis, and Backdoor with recall scores of 43%, 28% and 18% respectively (see Fig. 4)
 
@@ -97,13 +97,13 @@ Our results show a balanced accuracy of 68% and recall of 97%. However, consider
 
 To classify the attack categories which is a Multi-class problem we also use KNN. In our previous classifiers (Random Forest, Logistic Regression) we remove a large number of features from the dataset. Though the models trained and tested with a small number of important features from the dataset generate good predictions, make the entire dataset less significant. We also need to see how our system performs while keeping all the features in the dataset as significant. To do this experiment we come up with another baseline method KNN. In KNN we consider all the features in the dataset for training, testing, and validation. However, the problem with KNN is that it is very slow, and running it on a dataset with all features will make it even slower. To overcome this problem we compress the entire input features to 20 using a deep learning Autoencoder model. Figure 5 shows the structure of our Autoencoder model.
 
-<img src="figures/5.png" width="450">
-<!-- ![Figure 5](figures/5.png) -->
+<img src="reports/figures/5.png" width="450">
+<!-- ![Figure 5](reports/figures/5.png) -->
 
 It has 355,025 trainable parameters and 2484 non-trainable parameters. We use two dense layers in the encoder and decoder. We use Leaky ReLU as an activation function to deal with vanishing gradients. In the output layer, we use a linear activation function. To generate a good prediction with KNN it is important to choose the right value of n_neighbours. To choose the right value for n_neighbours we perform 5-fold cross-validation with the encoded data generated by the Autoencoder. While performing cross-validation we perform SMOTE only on the train folds to deal with the class imbalance and keep the validation folds as it is. This ensures no data leakage. While performing cross-validation we use balanced accuracy as our validation metric. After performing cross-validation we perform GridSearch to get the best n_neighbours. We find the best value of n_neighbours=95 with balanced accuracy = 0.573. Then we train our KNN model with class balance data generated by SMOTE and test the model with class imbalance data or original data. Our KNN model generates 0.63 balanced accuracy which is close to the validation accuracy metric. This ensures that there is no data leakage. Further, our KNN model generates Accuracy=0.96, Precision=0.98, Recall=0.96, and F1-score=0.97. The accuracy was low for Backdoor and Analysis attacks. Though the test accuracy is high, the balanced accuracy is that good. 
 
-<img src="figures/6.png" height="450">
-<!-- ![Figure 6](figures/6.png) -->
+<img src="reports/figures/6.png" height="450">
+<!-- ![Figure 6](reports/figures/6.png) -->
 
 Figure 6 shows the confusion matrix and classification report generated by our model. The confusion matrix represents the balanced accuracy of different types of attack categories. From the classification report it is obvious that the model performs very low for the attack categories.             
 
@@ -111,8 +111,8 @@ Figure 6 shows the confusion matrix and classification report generated by our m
 
 LIME (Local Interpretable Model-Agnostic Explanations) is a machine learning interpretability technique. LIME works by creating a simple, interpretable model that approximates the predictions of a black-box model. This simple model can then be used to explain why the black-box model made a particular prediction. LIME can be used to explain the predictions of any machine learning model, regardless of the model's complexity. While predicting the model LIME does not make any assumptions about the underlying distribution of the data. Further, the prediction of the model through LIME is based on local technique, it only explains the predictions of the model for a small subset of the data, which is helpful for identifying the features that are most important for making a particular prediction. We use LIME to interpret our baseline Random forest model trained with all the features in the dataset. We initiate LIME with our trained Randomforest model then pick a test sample that is labeled as attack category Generic and pass this sample to LIME to make the prediction and generate features importance. The figure shows the result generated by LIME. LIME predicts the sample as Generic based on its local prediction technique. The prediction of LIME is the same as the model prediction. Apart from that LIME also generates the most important features for predicting whether the attack is Generic or not. Figure 7 shows the top 6 important features that contribute to predicting whether the attack is Generic or not. 
 
-<img src="figures/7.png" height="300">
-<!-- ![Figure 7](figures/7.png) -->
+<img src="reports/figures/7.png" height="300">
+<!-- ![Figure 7](reports/figures/7.png) -->
 
 The features marked with sky color (service_dns, proto_udp, ct_dst_ltm, ct_src_ltm, and ct_state_ttl) contribute most to the prediction of attack category Generic and the feature marked with light green color (service_http) contributes to predicting that the attack category of the test sample is not Generic. Further, LIME also generates the value range for each feature that contributes to making the prediction. To predict that the attack category of the test sample is Generic the value range of the feature ct_state_ttl is between -0.58 to 0.01(inclusive).
 
@@ -126,8 +126,8 @@ We  utilized TensorBoard to monitor live performance of deep learning models wit
 * Learning rate: 0.001
 * Batch size: 1,024
 
-<img src="figures/8.png" height="500">
-<!-- ![Figure 8](figures/8.png) -->
+<img src="reports/figures/8.png" height="500">
+<!-- ![Figure 8](reports/figures/8.png) -->
 
 During that stage we also employed a method similar to the one described in 5.1.2 making sure that there was no leakage of data between the validation sets and data points synthetically generated by SMOTE in the training set. The best balanced accuracy achieved by the model with these parameters stayed 1.7% below the baseline (70.98%) with DoS attack class showing the only significant improvement over the baseline 72% (+19% accuracy), while simultaneously there was a number of classes that showed noticeable declines (“Backdoor” -12%, “Worms” -19%).
 
@@ -141,8 +141,8 @@ Calculate class weights in the original training set
 4. Calculate resulting class weight to pass to the model
 5. Fit the model on the remapped and rebalanced binary training set
 
-<!-- <img src="figures/2.png" height="500"> -->
-![Figure 9](figures/9.png)
+<!-- <img src="reports/figures/2.png" height="500"> -->
+![Figure 9](reports/figures/9.png)
 
 We then repeated that process 10 times to create a class-specific binary classifier for each of the attack classes and one non-attack (normal) class and combined them into a voting classifier. The voting classifier was then able to beat the baseline by 4.56% and achieve a balanced accuracy of 77.24% on the train set. As you could see in the plot on Fig.9, that model has significant improvements in its ability to identify “analysis” (+51%) and “backdoor” (+32%) attack types. These gains, however, come at the expense of decrease in performance for other classes: “DoS” (-7%), “shellcode” (-5%), “worms” (-16%).
 
@@ -150,12 +150,12 @@ We then repeated that process 10 times to create a class-specific binary classif
 
 We use a variational Autoencoder for Multi-class classification problems. Here again, we consider all the features in the dataset. The below figure shows the structure of our Variational Autoencoder model. 
 
-<img src="figures/10.png" width="500">
-![Figure 10](figures/10.png)
+<img src="reports/figures/10.png" width="500">
+![Figure 10](reports/figures/10.png)
 
 The model has 12,611 trainable parameters and 464 non-trainable parameters. We compress all input features to 20 and use the z_mean and z_log_var layers for parameter distribution. These two layers help to generate input-like data from the latent space’s compressed data. We then use the encoder to encode or compress the class balance train data generated by SMOTE and also to encode or compress class imbalance test data. After performing encoding the train and test dataset has only 20 features. We then again pick KNN for the training and testing. Here again, we set the n_neighbours = 95. Then we train our model with the encoded data and also test our model with the encoded test data. The model generates Balanced accuracy=0.634 which is almost the same but slightly better than the baseline KNN trained with uncompressed or unencoded (all features) data. Further, the model generates Accuracy=0.95, Precision=0.97, Recall=0.95, and F1-score=0.96. Below is the confusion matrix generated by our model. The confusion matrix is also the same as the baseline KNN.
 
-![Figure 11](figures/11.png)
+![Figure 11](reports/figures/11.png)
 
 Confusion matrix in Fig.11 again represents balanced accuracy. The balanced accuracy for Backdoor is increased here from 0.07 (base line) to 0.09. The classification report also is almost the same as baseline KNN. The most important thing to be noticed here is that, we train the baseline KNN with all features; however, here we train KNN with reduced encoded features generated by the encoder and again we achieve almost the same accuracy. 
 
@@ -165,7 +165,7 @@ As we learned in the second part of the project, detection of the attack event w
 
 However, for the multi-class classification we had to develop a special framework for grid-search and cross-validation carefully separating the pipelines between training and validation folds to avoid data leakage and make sure that test folds only were going through the application of SMOTE and undersampling to properly balance the attack classes. This approach  allowed us to fine-tune hyperparameters of each model that yielded results significantly higher than the initial benchmark set by the DummyClassifier. Figure 12 summarizes balanced accuracy for multi-class classification on the test set achieved by the models developed during the work on this project.  
 
-![Figure 12](figures/12.png)
+![Figure 12](reports/figures/12.png)
 
 Random Forest showed the highest result among baseline classifiers and achieved 72.68% overall balanced accuracy. However, the model struggled with correctly identifying some of the attack types. We weren’t successful in our attempt to beat the baseline with the sequential model and  autoencoders. An ensemble of 10 binary classifiers each trained to predict just one label was the only solution that improved the baseline result and showed better capabilities in recognizing attack classes that the rest of the models struggled the most (e.g. “analysis”, “backdoor”).
 
