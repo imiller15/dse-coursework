@@ -1,8 +1,8 @@
-# PCSC I1910 Group Project: Deep Learning for Network Intrusion Detection System
+# Deep Learning for Network Intrusion Detection System
 
+**CSC I1910:** Deep Neural Networks and Applications with TensorFlow
 
 **Team members:** Temidayo Akinyemi, Pushpen Bikash Goala, Ivan Miller
----
 
 ## Abstract:
 
