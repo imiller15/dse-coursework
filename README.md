@@ -1,8 +1,10 @@
-## Ivan Miller, [LinkedIn Profile](https://www.linkedin.com/in/ivan-miller/)
+## Ivan Miller
 
 I hold a Master's degree in [Data Science and Engineering](https://www.ccny.cuny.edu/dse) from The City College of New York (3.81 GPA) and I have over 7 years of experience in utilizing SQL and Python to extract insights from complex data.
 
 I currently work as  a Data Science and Analytics Lead at [Vox Media](https://corp.voxmedia.com/) where I collaborate with diverse teams and deliver data-driven solutions and impactful analyses to inform strategic decision-making, optimize product performance, and grow advertising revenue.
+
+[LinkedIn profile](https://www.linkedin.com/in/ivan-miller/)
 
 
 **Data Science and Engineering Coursework**
