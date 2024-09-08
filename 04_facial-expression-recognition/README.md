@@ -304,79 +304,33 @@ EDA, KNN and cross-validation, CNN - model design and tuning, activation maps
 ## 9. Bibliography:
 
 1. MANAS SAMBARE: FER-2013
-
 [https://www.kaggle.com/datasets/msambare/fer2013](https://www.kaggle.com/datasets/msambare/fer2013)
 
-1. Research Prediction Competition: Challenges in Representation Learning: Facial Expression Recognition Challenge
-
+2. Research Prediction Competition: Challenges in Representation Learning: Facial Expression Recognition Challenge
 [https://www.kaggle.com/competitions/challenges-in-representation-learning-facial-expression-recognition-challenge/data](https://www.kaggle.com/competitions/challenges-in-representation-learning-facial-expression-recognition-challenge/data)
 
-1. Goodfellow1, D. Erhan: &quot;Challenges in Representation Learning: A report on three machine learning contests&quot;, arXiv:1307.0414.
-
+3. Goodfellow1, D. Erhan: &quot;Challenges in Representation Learning: A report on three machine learning contests&quot;, arXiv:1307.0414.
 [https://arxiv.org/abs/1307.0414](https://arxiv.org/abs/1307.0414)
 
-1. Saeed, J. Baber, M. Bakhtyar: &quot;Empirical Evaluation of SVM for Facial Expression Recognition&quot;. International Journal of Advanced Computer Science and Applications,
-
-Vol. 9, No. 11, 2018
-
+4. Saeed, J. Baber, M. Bakhtyar: &quot;Empirical Evaluation of SVM for Facial Expression Recognition&quot;. International Journal of Advanced Computer Science and Applications,Vol. 9, No. 11, 2018
 [https://pdfs.semanticscholar.org/b476/20c2d7698adf3f369d98b97fc9bba0ef3133.pdf](https://pdfs.semanticscholar.org/b476/20c2d7698adf3f369d98b97fc9bba0ef3133.pdf)
 
-1. Mustamin Anggo and La Arapu, &quot;Face Recognition Using Fisherface Method&quot;, IOP Conf. Series: Journal of Physics: Conf. Series 1028 (2018) 012119 [https://iopscience.iop.org/article/10.1088/1742-6596/1028/1/012119/pdf](https://iopscience.iop.org/article/10.1088/1742-6596/1028/1/012119/pdf)
-2. Matthew A. Turk and Alex P. Pentland, &quot;Face recognition using eigenfaces&quot; Proc. IEEE Conference on Computer Vision and Pattern Recognition, pp. 586–591 (1991)
+5. Mustamin Anggo and La Arapu, &quot;Face Recognition Using Fisherface Method&quot;, IOP Conf. Series: Journal of Physics: Conf. Series 1028 (2018) 012119 [https://iopscience.iop.org/article/10.1088/1742-6596/1028/1/012119/pdf](https://iopscience.iop.org/article/10.1088/1742-6596/1028/1/012119/pdf)
 
+6. Matthew A. Turk and Alex P. Pentland, &quot;Face recognition using eigenfaces&quot; Proc. IEEE Conference on Computer Vision and Pattern Recognition, pp. 586–591 (1991)
 [https://sites.cs.ucsb.edu/~mturk/Papers/mturk-CVPR91.pdf](https://sites.cs.ucsb.edu/~mturk/Papers/mturk-CVPR91.pdf)
 
-1. Peter N. Belhumeur, João P. Hespanha, and David J. Kriegman: &quot;Eigenfaces vs. Fisherfaces: Recognition Using Class Specific Linear Projection&quot; IEEE Transaction on Pattern Analysis and Machine Intelligence, Vol. 19, No. 7, July 1997
-
+7. Peter N. Belhumeur, João P. Hespanha, and David J. Kriegman: &quot;Eigenfaces vs. Fisherfaces: Recognition Using Class Specific Linear Projection&quot; IEEE Transaction on Pattern Analysis and Machine Intelligence, Vol. 19, No. 7, July 1997
 [https://cseweb.ucsd.edu/classes/wi14/cse152-a/fisherface-pami97.pdf](https://cseweb.ucsd.edu/classes/wi14/cse152-a/fisherface-pami97.pdf)
 
-1. Csurka, C. Dance, L.X. Fan, J. Willamowski and C. Bray &quot;Visual Categorization with Bags of Keypoints&quot; International Workshop on Statistical Learning in Computer Vision, ECCV, pp. 1–22, 2004.
-
+8. Csurka, C. Dance, L.X. Fan, J. Willamowski and C. Bray &quot;Visual Categorization with Bags of Keypoints&quot; International Workshop on Statistical Learning in Computer Vision, ECCV, pp. 1–22, 2004.
 [https://www.cs.cmu.edu/~efros/courses/LBMV07/Papers/csurka-eccv-04.pdf](https://www.cs.cmu.edu/~efros/courses/LBMV07/Papers/csurka-eccv-04.pdf)
 
-1. Sandipan Dey &quot;Python Image Processing Cookbook&quot; Chapter 8 (2020)
-2. Dalal, B. Triggs, &quot;Histograms of Oriented Gradients for Human Detection&quot;, 2005, [https://lear.inrialpes.fr/people/triggs/pubs/Dalal-cvpr05.pdf](https://lear.inrialpes.fr/people/triggs/pubs/Dalal-cvpr05.pdf)
-3. Dahinden, C., 2009. An improved Random Forests approach with application to the performance prediction challenge datasets. Hands on Pattern Recognition. Microtome.
-4. Breiman, L., 2001. Random forests. Machine learning, 45(1), pp.5–32
-5. X
-6.
+9. Sandipan Dey &quot;Python Image Processing Cookbook&quot; Chapter 8 (2020)
 
-## 10. Appendix:
+10. Dalal, B. Triggs, &quot;Histograms of Oriented Gradients for Human Detection&quot;, 2005, 
+[https://lear.inrialpes.fr/people/triggs/pubs/Dalal-cvpr05.pdf](https://lear.inrialpes.fr/people/triggs/pubs/Dalal-cvpr05.pdf)
 
-1. Comparison with different type of data in different scale for SVM and KNN
+11. Dahinden, C., 2009. An improved Random Forests approach with application to the performance prediction challenge datasets. Hands on Pattern Recognition. Microtome.
 
-The following figures show the test accuracy on SVM and KNN with different types of data in different scales or different parameters. The first figure shows the accuracy of the original dataset, scaled original dataset, which pixels are divided by 255, HoG on original dataset, Rescaled HoG on original dataset.
-
-![](RackMultipart20220526-1-zyxhcw_html_1443eae92f541c5b.png)
-
-The next figures are for EigenFace and FisherFace. For EigenFace, PCA on the original dataset, PCA on normalized data, PCA on standardized data, PCA on scaled data, and last one is the inverted image data from PCA on the original dataset which did the worst on SVM. FisherFace is almost the same as the PCA, and those are PCA + LDA on the original dataset, on normalized data, on standardized data or on scaled data.
-
-![](RackMultipart20220526-1-zyxhcw_html_6792d7f811339c0a.png) ![](RackMultipart20220526-1-zyxhcw_html_246a621df6b12359.png)
-
-The following figures are each descriptor in a different number of visual words, K. Original means that Bag of feature on the original dataset and PCA means that Bag of feature on PCA dataset. All of the results are below the benchmark.
-
-![](RackMultipart20220526-1-zyxhcw_html_3e45781b5dc67ec.png) ![](RackMultipart20220526-1-zyxhcw_html_dbcacb3a16571c17.png)
-
-![](RackMultipart20220526-1-zyxhcw_html_c1bd4af69f23ad81.png) ![](RackMultipart20220526-1-zyxhcw_html_1ab96c29851db639.png) ![](RackMultipart20220526-1-zyxhcw_html_ca9e641197533312.png)
-
-ICEBOX
-
-| **Class** | **Precision** | **Recall** | **F1-score** | **Support** |
-| --- | --- | --- | --- | --- |
-| **Angry** | 0.62 | 0.51 | 0.56 | 497 |
-| --- | --- | --- | --- | --- |
-| **Disgust** | 0.94 | 0.98 | 0.96 | 418 |
-| **Fear** | 0.50 | 0.36 | 0.42 | 518 |
-| **Happy** | 0.83 | 0.87 | 0.85 | 861 |
-| **Sad** | 0.51 | 0.50 | 0.51 | 642 |
-| **Surprise** | 0.77 | 0.75 | 0.76 | 405 |
-| **Neutral** | 0.52 | 0.68 | 0.59 | 607 |
-| **Accuracy** | - | - | 0.67 | 3948 |
-| **Macro average** | 0.67 | 0.66 | 0.66 | 3948 |
-| **Weighted average** | 0.67 | 0.67 | 0.66 | 3948 |
-
-CNN Confusion matrix
-
-![](RackMultipart20220526-1-zyxhcw_html_dccc3643920815f0.png)
-
-**Fig xx.** Validation accuracy by model
+12. Breiman, L., 2001. Random forests. Machine learning, 45(1), pp.5–32
