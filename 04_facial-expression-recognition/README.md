@@ -32,7 +32,7 @@ We selected Facial Expression Recognition 2013 (FER-2013) dataset [8] for the pr
 The original dataset contained 35,887 images, out of which 28,709 images belonged to the train set and the remaining 7,178 images were assigned to the test set. All images were then grouped into seven categories of emotions with 4,953 images labeled as “angry”, 547 “disgust” images, 5,127 “fear”, 8,989 “happy”, 6,077 “sad”, 4,002 “surprise”, and 6,198 “neutral”. During the EDA stage the dataset was inspected and images that contained black or white pixels only were removed. In addition, in order to address the issue with a severe imbalance between the classes, when images in the minority “disgust” class were only about 6% compared to the majority “happy” class, the “disgust” class was upsampled to 4,000 images (see Fig.1 for details about the data distribution between the classes before and after). The resampled dataset consists of 31,432 training images and 7,896 test images.
 
 
-![Figure 1 A](figures/figure1_a.png) ![Figure 1 B](figures/figure1_b.png)
+![Figure 1 A](reports/figures/figure1_a.png) ![Figure 1 B](reports/igures/figure1_b.png)
 
 **Figure 1**: Distribution of images between the classes in the original dataset (left), compared to the distribution after upsampling of the minority “disgust class (right)
 
@@ -51,13 +51,13 @@ The simplest pattern recognition method is based on matching between patterns, b
 
 We first standardized the resampled dataset and then performed the principal component analysis. Out of 2304 original components we identified 115 principal components that make up more than 90% of the explained variance in the data and used these principal components for the analysis.
 
-![Figure 2](figures/figure2.png)
+![Figure 2](reports/figures/figure2.png)
 
 **Figure 2**: Explained variance ratio vs Principal components
 
 The first 34 principal components contain more than 80% of the cumulative explained variance ratio. As shown in Figure 4, the first few components take care of lightning conditions and later components extract identifying features, such as the eyes, nose and mouth.
 
-![Figure 3](figures/figure3.png)
+![Figure 3](reports/figures/figure3.png)
 
 **Figure 3**: Images of first 20 components of PCA
 
@@ -65,7 +65,7 @@ The first 34 principal components contain more than 80% of the cumulative explai
 
 Fisherface is one of the popular algorithms used in face recognition, and is widely believed to be superior to other techniques, such as Eigenface because of the effort to maximize the separation between classes in the training process. For this method, linear discriminant analysis (LDA) is applied after the PCA. LDA finds the axis that distinguishes between two or more classes. It does not get affected easily by differences in lighting and angles compared to EigenFace. We use the PCA data from 5.1 EigenFace, with a standardized resampled dataset and 115 components, and then apply LDA. Six examples from the FisherFace result are shown in Figure 5.
 
-![Figure 4](figures/figure4.png)
+![Figure 4](reports/figures/figure4.png)
 
 **Figure 4**: Images of fisherface
 
@@ -75,7 +75,7 @@ Fisherface is one of the popular algorithms used in face recognition, and is wid
 
 HoG is a popular feature descriptor for object detection in an image by first computing the horizontal and vertical gradient images, then computing the gradient histograms and normalizing across blocks, and finally flattening into a feature descriptor vector [10]. It can capture edge structure that is characteristic of local shapes and structure invariant to local photometric and geometric transformations. It is also known to outperform PCA/SIFT for a large-scale dataset [11]. Which makes HoG the perfect candidate for a feature descriptor for a large image dataset like the facial expression dataset. We have also observed that HoG was much faster and more accurate compared to SIFT and PCA. After performing HOG feature descriptor our input data feature has decreased from 2304 columns to only 1152 columns while the accuracy of our random forest model has increased by 22%.
 
-![Figure 5](figures/figure5.png)
+![Figure 5](reports/figures/figure5.png)
 
 **Figure 5**: Comparison of images before and after applying histogram of oriented gradients (HoG)
 
@@ -83,7 +83,7 @@ HoG is a popular feature descriptor for object detection in an image by first co
 
 Bag of Visual Words is a widely used image feature representation in object recognition and is a vector-quantized histogram of many local features in an image. This method was originally derived from the Bag of Words model that is often used for Natural Language Processing. First, 128 dimensional local features were extracted from each image. In our experiment, we used SIFT, KAZE, ORB, BRISK, AKAZE shown in Figure 7 to extract feature descriptors. Then, cluster all feature vectors into K clusters by using K-means. Each centroid, center vector, of K clusters is a visual word and also represented by a 128 dimensional vector. Finally, the entire image was converted into a histogram with visual words as the dimension. This is done by searching for the closest visual word for each local feature in the image and voting for that visual word. Eventually this histogram will be the feature vector of the image.
 
-![Figure 6](figures/figure6.png)
+![Figure 6](reports/figures/figure6.png)
 
 **Figure 6**: Visualization of SIFT, KAZE, ORB, BRISK, and AKAZE feature detection algorithms
 
@@ -115,7 +115,7 @@ We evaluated a variety of model architectures, experimented with optimizers, los
 - Flatten layer followed by two sets of fully connected layers, each with its own dropout layer (30% and 25%).
 - Lastly, a fully connected layer with 7 units and a softmax activation function for the final prediction of the image class.
 
-![Figure 7](figures/figure7.png)
+![Figure 7](reports/figures/figure7.png)
 
 **Figure 8**: Convolutional Neural Network with 15 layers:  4 sets of convolutional and pooling layers; flatten layer followed by two sets of fully connected layers, each with its own dropout layer, and a fully connected layer for the final prediction of the image class.
 
@@ -133,28 +133,28 @@ One of the steps that helped us reduce overfitting and significantly increase tr
 
 To look at what happens under the hood of the neural network we looked at activation of the network during the forward pass. Simply put activation functions help determine whether a given neuron within a layer gets activated or not based on the input data it receives. To visualize the transformations of an image as it goes through filters of each layer we dissected the model by layers to see how the image is changing as it goes through filters of each layer making the output of one layer an input for the next. Figures xx through xx illustrate how the image is being transformed by the first four layers of the neural network.
 
-![Figure 8](figures/figure8.png)
+![Figure 8](reports/figures/figure8.png)
 
 **Figure 8**: 6 out of 32 images (48 x 48 each) from the first Convolutional layer, 3x3 kernel size, RELU activation function
 
-![Figure 9](figures/figure9.png)
+![Figure 9](reports/figures/figure9.png)
 
 **Figure 9**: 6 out of 32 images (24 x 24 each) from the first Pooling Layer
 
-![Figure 10](figures/figure10.png)
+![Figure 10](reports/figures/figure10.png)
 
 **Figure 10**: 6 out of 64 images (22 x 22 each) from the Second Convolutional Layer
 
-![Figure 11](figures/figure11.png)
+![Figure 11](reports/figures/figure11.png)
 
 **Figure 11**: 6 out of 64 images (11 x 11 each) from the first Second Pooling Layer
 
 
 As the image goes deeper into the layers of the model, the activations start looking more sparse and localized. Figure xx shows activations of the same image by layers
 
-![Figure 12 A](figures/figure12_a.png) ![Figure 12 B](figures/figure12_b.png)
+![Figure 12 A](reports/figures/figure12_a.png) ![Figure 12 B](reports/figures/figure12_b.png)
 
-![Figure 12 C](figures/figure12_c.png) ![Figure 12 D](figures/figure12_d.png)
+![Figure 12 C](reports/figures/figure12_c.png) ![Figure 12 D](reports/figures/figure12_d.png)
 
 **Figure 12**: Activation Maps for inner layer for a convolutional neural network:
 
@@ -171,13 +171,13 @@ As the image goes deeper into the layers of the model, the activations start loo
 
 To compare the results achieved by for four simple Machine Learning algorithms, we use EigenFace, FisherFace and HoG data as described in 5. Methods section. The following figure shows the test accuracy for each Machine Learning algorithm. Among SVM, EigenFace was the highest score, however, the training accuracy was 99% which means that the result is way overfitting. Therefore, HoG of 47% testing accuracy with 53% training accuracy makes the best result for SVM. HoG is also the highest for KNN with 51% accuracy. We use a small number of neighbors for this comparison, therefore training accuracy becomes 99%. Overall, the highest test accuracy is 51% for the Random Forest algorithm. Most of the accuracy are below 50% which seems bad, however, it is acceptable compared to the 22% benchmark.
 
-![Figure 13](figures/figure13.png)
+![Figure 13](reports/figures/figure13.png)
 
 **Figure 13**: ML testing accuracy comparison
 
 We also use the Bag of Visual Word technique to compare for SVM and KNN, however, all of the descriptor cases are below the benchmark. Therefore, we drop this technique to apply for further analysis and other Machine Learning algorithms. More detailed comparison for each technique are available in appendix.
 
-![Figure 14](figures/figure14.png)
+![Figure 14](reports/figures/figure14.png)
 
 **Figure 14**: Comparison of testing accuracy for SVM and KNN classifiers on data transformed using Bag of VisualWords
 
@@ -186,9 +186,9 @@ We also use the Bag of Visual Word technique to compare for SVM and KNN, however
 
 All of the confusion matrices show the highest accuracy for the happy label due to the amount of the happy label data we trained. Disgust also shows high accuracy compared to any other labels and it is because we resampled the disgust label data.
 
-![Figure 15_A](figures/figure15_a.png)
+![Figure 15_A](reports/figures/figure15_a.png)
 
-![Figure 15_B](figures/figure15_b.png)
+![Figure 15_B](reports/figures/figure15_b.png)
 
 **Figure 15**: Confusion matrices for the validation accuracy of models fitted to the data transformed with HoG:
 
@@ -198,7 +198,7 @@ All of the confusion matrices show the highest accuracy for the happy label due 
 
 Here are the overall performance scores for each Machine Learning Classifier. Random Forest marks the highest F1 score and second is KNN. Precision of Random Forest is 64% which are very high compared to other classifiers.
 
-![Figure 16](figures/figure16.png)
+![Figure 16](reports/figures/figure16.png)
 
 **Figure 16**: Overall performance metrics for each model: Support Vector Machine, K-Nearest Neighbors,Random Forest, Stochastic Gradient Descent Classifier
 
@@ -207,11 +207,11 @@ Here are the overall performance scores for each Machine Learning Classifier. Ra
 
 Classification report also indicates a similar result as the confusion matrices. Highest F1-score of each classification are disgust, happy and surprise labels. Happy and disgust recall is higher than precision, however surprise precision is higher than its recall. Happy label shows high scores because it has more data than any other labels. Disgust score is not precise due to the resampling. Surprise label has the lowest number of data, therefore the precision could mark higher than recall.
 
-![Figure 17](figures/figure17.png)
+![Figure 17](reports/figures/figure17.png)
 
 **Figure 17**: Classification report for SVM and KNN classifiers showing precision, recall, and F1 score by class. Both models were trained on the data transformed with HoG.
 
-![Figure 18](figures/figure18.png)
+![Figure 18](reports/figures/figure18.png)
 
 **Figure 18**: Classification report for Random Forest and SGD classifiers showing precision, recall, and F1 score by class. Both models were trained on the data transformed with HoG.
 
@@ -222,18 +222,18 @@ Validation curve for SVM increases as parameter C becomes larger, and the model 
 
 Verification curve for SVM
 
-![Figure 19](figures/figure19.png)
+![Figure 19](reports/figures/figure19.png)
 
 **Figure 19**: Validation curve for the SVM classifier
 
-![Figure 20](figures/figure20v2.png)
+![Figure 20](reports/figures/figure20v2.png)
 **Figure 20**: Accuracy of the KNN model as a function of number of neighbors K
 
-![Figure 21](figures/figure21.png)
+![Figure 21](reports/figures/figure21.png)
 
 **Figure 21**: Validation curve for the Random Forest classifier
 
-![Figure 22](figures/figure22.png)
+![Figure 22](reports/figures/figure22.png)
 
 **Figure 22**: Validation curve for SGD classifier
 
@@ -246,9 +246,9 @@ For the learning curve, KNN and Random forest show 100% training accuracy from t
 
 Learning curve for SVM with HoG Learning curve for KNN with HoG
 
-![Figure 23 A](figures/figure23_a.png)
+![Figure 23 A](reports/figures/figure23_a.png)
 
-![Figure 23 B](figures/figure23_b.png)
+![Figure 23 B](reports/figures/figure23_b.png)
 
 **Figure 23**: Learning curve of models fitted to the data transformed with HoG:
 
@@ -257,12 +257,12 @@ Learning curve for SVM with HoG Learning curve for KNN with HoG
 
 ### 6.2 Convolutional Neural Network - Model Evaluation and Testing
 
-<img src="figures/figure24_a.png" width="400"> <img src="figures/figure24_b.png" width="400">
+<img src="reports/figures/figure24_a.png" width="400"> <img src="reports/figures/figure24_b.png" width="400">
 
 **Figure 24**: Convolutional Neural Network: Model Evaluation and Testing after 554 epochs
 **a)** Training vs Validation Loss, **b)** Training vs Validation Accuracy 
 
-![Figure 25](figures/figure25.png)
+![Figure 25](reports/figures/figure25.png)
 
 **Figure 25**: Convolutional Neural Network: Model Evaluation and Testing after 554 epochs
 
